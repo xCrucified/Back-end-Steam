@@ -6,10 +6,10 @@ namespace SteamProjectG2.Controllers
     [ApiController]
     public class EditionController : Controller
     {
-        //private readonly IProductsService productsService;
-        public EditionsController(/*IProductsService productsService*/)
+        private readonly IProductsService productsService;
+        public EditionController(IProductsService productsService)
         {
-            //this.productsService = productsService;
+            this.productsService = productsService;
         }
 
         [HttpGet("all")]

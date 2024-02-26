@@ -1,7 +1,4 @@
-﻿using data_access.data;
-using data_access.data.Entities;
-using data_access.Repositories;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;

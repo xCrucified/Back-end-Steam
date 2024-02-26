@@ -1,23 +1,20 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_access.data.Entities
+namespace business_logic.DTOs
 {
-    public class Edition
+    public class CreateEditionModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal? Price { get; set; }
-        public string? ImgUrl { get; set; }
         public int? Discount { get; set; }
+        public IFormFile? Image { get; set; }
 
         public int CategoryId { get; set; }
-
-        public Category? Category { get; set; }
-        public ICollection<Review>? Review { get; set; }
     }
 }
