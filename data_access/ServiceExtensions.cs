@@ -1,4 +1,7 @@
-﻿using data_access.data;
+﻿using business_logic.Interfaces;
+using data_access.data;
+using data_access.data.Entities;
+using data_access.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;

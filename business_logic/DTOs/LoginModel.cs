@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace business_logic.DTOs
 {
-    public class UserDto
+    public class LoginModel
     {
-
+        public string Email { get; set; }
+        public string Password { get; set; }
     }
 }

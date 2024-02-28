@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.DTOs
+namespace business_logic.Interfaces
 {
-    public class CountryDto
+    public interface IViewRender
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-
+        string Render<TModel>(string name, TModel model);
     }
 }

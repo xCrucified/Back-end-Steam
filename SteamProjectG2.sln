@@ -4,8 +4,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SteamProjectG2", "SteamProjectG2\SteamProjectG2.csproj", "{BA5B5754-83AF-4287-AC6C-94AF68C94429}"
+	ProjectSection(ProjectDependencies) = postProject
+		{63AB6C29-E8FD-444A-B73B-862306E5816F} = {63AB6C29-E8FD-444A-B73B-862306E5816F}
+		{BB7F2E8B-5149-4B61-A770-ED737EE04FF1} = {BB7F2E8B-5149-4B61-A770-ED737EE04FF1}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "data_access", "data_access\data_access.csproj", "{63AB6C29-E8FD-444A-B73B-862306E5816F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BB7F2E8B-5149-4B61-A770-ED737EE04FF1} = {BB7F2E8B-5149-4B61-A770-ED737EE04FF1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "business_logic", "business_logic\business_logic.csproj", "{BB7F2E8B-5149-4B61-A770-ED737EE04FF1}"
 EndProject

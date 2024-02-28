@@ -55,7 +55,8 @@ namespace data_access.data.Entities
         Western,
         Zombie,
         PostApocalyptic,
-        Esports
+        Esports,
+        Others
     }
     public class Category
     {

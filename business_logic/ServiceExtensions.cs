@@ -1,5 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using business_logic.Interfaces;
+using business_logic.Profiles;
+using business_logic.Services;
+using data_access.data.Entities;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,24 +18,28 @@ namespace business_logic
 {
     public static class ServiceExtensions
     {
-        public static void AddDbContext(this IServiceCollection services, string connectionString)
+        public static void AutoMapper(this IServiceCollection services)
         {
-            services.AddDbContext<SteamDbContext>(opts => opts.UseSqlServer(connectionString));
-        }
-
-        public static void AddRepositories(this IServiceCollection services)
-        {
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        }
-
-        public static void AddIdentity(this IServiceCollection services)
-        {
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
-                options.SignIn.RequireConfirmedAccount = false;
-            })
-               .AddDefaultTokenProviders()
-               .AddEntityFrameworkStores<SteamDbContext>();
+                cfg.AddProfile(new EditionProfile(provider.CreateScope().ServiceProvider.GetService<IFileService>()!));
+            }).CreateMapper());
+        }
+
+        public static void AddFluentValidators(this IServiceCollection services)
+        {
+            //services.AddFluentValidationAutoValidation();
+            //// enable client-side validation
+            //services.AddFluentValidationClientsideAdapters();
+            // Load an assembly reference rather than using a marker type.
+            services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        }
+        public static void AddCustomServices(this IServiceCollection services)
+        {
+            services.AddScoped<IEditionsService, EditionsService>();
+            services.AddScoped<IAccountsService, AccountsService>();
+            services.AddScoped<IFileService, LocalFileService>();
+            services.AddScoped<IEmailSender, MailJetSender>();
         }
     }
 }

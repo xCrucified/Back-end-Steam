@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace business_logic.Interfaces
 {
-    public class IEditionsService
+    public interface IEditionsService
     {
         IEnumerable<EditionDto> GetAll();
         IEnumerable<EditionDto> Get(IEnumerable<int> ids);

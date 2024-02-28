@@ -1,47 +1,49 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using business_logic.DTOs;
+using business_logic.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SteamProjectG2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EditionController : Controller
+    public class EditionController : ControllerBase
     {
-        private readonly IProductsService productsService;
-        public EditionController(IProductsService productsService)
+        private readonly IEditionsService editionsService;
+        public EditionController(IEditionsService editionsService)
         {
-            this.productsService = productsService;
+            this.editionsService = editionsService;
         }
 
         [HttpGet("all")]
         public IActionResult Get()
         {
-            //return Ok(productsService.GetAll());
+            return Ok(editionsService.GetAll());
         }
         [HttpGet("{id:int}")]
         public IActionResult Get([FromRoute] int id)
         {
-            //return Ok(productsService.Get(id));
+            return Ok(editionsService.Get(id));
         }
 
         [HttpPost]
-        public IActionResult Create(/*[FromForm] CreateProductModel model*/)
+        public IActionResult Create([FromForm] CreateEditionModel model)
         {
-            //productsService.Create(model);
+            editionsService.Create(model);
             return Ok();
         }
 
 
         [HttpPut]
-        public IActionResult Edit(/*[FromBody] ProductDto model*/)
+        public IActionResult Edit([FromBody] EditionDto model)
         {
-            //productsService.Edit(model);
+            editionsService.Edit(model);
             return Ok();
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            //productsService.Delete(id);
+            editionsService.Delete(id);
             return Ok();
         }
         
