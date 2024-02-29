@@ -50,11 +50,11 @@ namespace data_access.data
             });
             builder.Entity<Edition>().HasData(new[]
             {
-                new Edition { Id = 1, Name="Dota 2", Description="Doesn't exist!", Price=420, ImgUrl="https://i.pinimg.com/736x/45/c8/7b/45c87b4b7852f71b49f794ab98f6c6a5.jpg", Discount=0},
-                new Edition { Id = 2, Name = "FIFA 22", Description = "Football simulation game", Price = 59.99m, ImgUrl = "https://example.com/fifa22.jpg", Discount = 15 },
-                new Edition { Id = 3, Name = "Assassin's Creed Valhalla", Description = "Action role-playing game", Price = 49.99m, ImgUrl = "https://example.com/ac_valhalla.jpg", Discount = 10 },
-                new Edition { Id = 4, Name = "Minecraft", Description = "Sandbox game", Price = 29.99m, ImgUrl = "https://example.com/minecraft.jpg", Discount = 5 },
-                new Edition { Id = 5, Name = "The Witcher 3: Wild Hunt", Description = "Action role-playing game", Price = 39.99m, ImgUrl = "https://example.com/witcher3.jpg", Discount = 20 },
+                new Edition { Id = 1, Name="Dota 2", Description="Doesn't exist!", Price=420, CategoryId = 5, ImgUrl="https://i.pinimg.com/736x/45/c8/7b/45c87b4b7852f71b49f794ab98f6c6a5.jpg", Discount=0},
+                new Edition { Id = 2, Name = "FIFA 22", Description = "Football simulation game", Price = 59.99m, CategoryId = 4, ImgUrl = "https://example.com/fifa22.jpg", Discount = 15 },
+                new Edition { Id = 3, Name = "Assassin's Creed Valhalla", Description = "Action role-playing game", CategoryId = 3, Price = 49.99m, ImgUrl = "https://example.com/ac_valhalla.jpg", Discount = 10 },
+                new Edition { Id = 4, Name = "Minecraft", Description = "Sandbox game", Price = 29.99m, ImgUrl = "https://example.com/minecraft.jpg", CategoryId = 1, Discount = 5 },
+                new Edition { Id = 5, Name = "The Witcher 3: Wild Hunt", Description = "Action role-playing game", CategoryId = 2, Price = 39.99m, ImgUrl = "https://example.com/witcher3.jpg", Discount = 20 },
             });
             builder.Entity<Review>().HasData(new[]
             {

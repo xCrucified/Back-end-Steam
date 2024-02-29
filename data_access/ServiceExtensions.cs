@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace data_access
 {
-    public static class ServiceExtensions
+    public static class ServiceExtentions
     {
         public static void AddDbContext(this IServiceCollection services, string connectionString)
         {

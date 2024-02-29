@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace data_access.data
 {
-    public class SteamDbContext : IdentityDbContext<User>
+    public class SteamDbContext : IdentityDbContext<User>   
     {
         public SteamDbContext(DbContextOptions options) : base(options) { }
 
