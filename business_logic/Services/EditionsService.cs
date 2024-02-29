@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
 using business_logic.Interfaces;
-using BusinessLogic;
 using data_access.data.Entities;
 using System;
 using System.Collections.Generic;

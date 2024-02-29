@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using business_logic;
 using SteamProjectG2;
+using business_logic.Interfaces;
 
-internal class Program
+public   class Program
 {
     private static void Main(string[] args)
     {
@@ -21,6 +22,7 @@ internal class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDbContext(connStr);
+
         builder.Services.AddIdentity();
         builder.Services.AddRepositories();
 
