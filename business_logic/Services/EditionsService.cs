@@ -35,12 +35,12 @@ namespace business_logic.Services
 
         public void Delete(int id)
         {
-            if (id < 0) throw new HttpExceptions(Errors.IdMustPositive, HttpStatusCode.BadRequest);
+            if (id < 0) throw new HttpException(Errors.IdMustPositive, HttpStatusCode.BadRequest);
 
             // delete product by id
             var product = editionR.GetByID(id);
 
-            if (product == null) throw new HttpExceptions(Errors.ProductNotFound, HttpStatusCode.NotFound);
+            if (product == null) throw new HttpException(Errors.ProductNotFound, HttpStatusCode.NotFound);
 
             editionR.Delete(product);
             editionR.Save();
@@ -54,10 +54,10 @@ namespace business_logic.Services
 
         public EditionDto? Get(int id)
         {
-            if (id < 0) throw new HttpExceptions(Errors.IdMustPositive, HttpStatusCode.BadRequest);
+            if (id < 0) throw new HttpException(Errors.IdMustPositive, HttpStatusCode.BadRequest);
 
             var item = editionR.GetByID(id);
-            if (item == null) throw new HttpExceptions(Errors.ProductNotFound, HttpStatusCode.NotFound);
+            if (item == null) throw new HttpException(Errors.ProductNotFound, HttpStatusCode.NotFound);
 
             var dto = mapper.Map<EditionDto>(item);
 

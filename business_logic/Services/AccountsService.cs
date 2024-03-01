@@ -35,14 +35,14 @@ namespace business_logic.Services
             var user = await userManager.FindByEmailAsync(model.Email);
 
             if (user != null)
-                throw new HttpExceptions("Email is already exists.", HttpStatusCode.BadRequest);
+                throw new HttpException("Email is already exists.", HttpStatusCode.BadRequest);
 
             // create user
             var newUser = mapper.Map<User>(model);
             var result = await userManager.CreateAsync(newUser, model.Password);
 
             if (!result.Succeeded)
-                throw new HttpExceptions(string.Join(" ", result.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
+                throw new HttpException(string.Join(" ", result.Errors.Select(x => x.Description)), HttpStatusCode.BadRequest);
         }
 
         public async Task Login(LoginModel model)
@@ -50,7 +50,7 @@ namespace business_logic.Services
             var user = await userManager.FindByEmailAsync(model.Email);
 
             if (user == null || !await userManager.CheckPasswordAsync(user, model.Password))
-                throw new HttpExceptions("Invalid user login or password.", HttpStatusCode.BadRequest);
+                throw new HttpException("Invalid user login or password.", HttpStatusCode.BadRequest);
 
             await signInManager.SignInAsync(user, true);
         }

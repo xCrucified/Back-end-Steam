@@ -11,7 +11,7 @@ namespace SteamProjectG2.Helpers
 
     public static class Seeder
     {
-        public static async Task SeedRoles(IServiceProvider app)
+        public static async Task SeedRoles(this IServiceProvider app)
         {
             var roleManager = app.GetRequiredService<RoleManager<IdentityRole>>();
 
@@ -24,7 +24,7 @@ namespace SteamProjectG2.Helpers
             }
         }
 
-        public static async Task SeedAdmin(IServiceProvider app)
+        public static async Task SeedAdmin(this IServiceProvider app)
         {
             var userManager = app.GetRequiredService<UserManager<User>>();
 

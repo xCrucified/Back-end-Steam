@@ -15,7 +15,7 @@ namespace data_access.data.Entities
         public int EditionId { get; set; }
         public int UserId { get; set; }
 
+        public User? User { get; set; }
         public Edition Edition { get; set; }
-        public User User { get; set; }
     }
 }

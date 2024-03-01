@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using business_logic;
 using SteamProjectG2;
-using business_logic.Interfaces;
-
-public   class Program
+using data_access;
+using Microsoft.Extensions.DependencyInjection;
+using SteamProjectG2.Helpers;
+public class Program
 {
     private static void Main(string[] args)
     {
@@ -22,16 +23,21 @@ public   class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDbContext(connStr);
-
         builder.Services.AddIdentity();
         builder.Services.AddRepositories();
 
-        builder.Services.AddAutoMapper();
+        builder.Services.AutoMapper();
         builder.Services.AddFluentValidators();
 
         builder.Services.AddCustomServices();
 
         var app = builder.Build();
+
+        using(var scope = app.Services.CreateScope())
+        {
+            scope.ServiceProvider.SeedRoles().Wait();
+            scope.ServiceProvider.SeedAdmin().Wait();
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

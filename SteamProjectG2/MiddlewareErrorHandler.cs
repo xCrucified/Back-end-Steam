@@ -20,7 +20,7 @@ namespace SteamProjectG2
             {
                 await _next(context);
             }
-            catch (HttpExceptions httpError)
+            catch (HttpException httpError)
             {
                 await CreateResponse(context, httpError.Status, httpError.Message);
             }

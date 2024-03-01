@@ -18,7 +18,7 @@ namespace data_access.data.Configs
             builder.ToTable("Editions");
 
             builder
-                .HasOne(x => x.Category).WithMany(x => x.Edition).HasForeignKey(x => x.CategoryId);
+                .HasOne(x => x.Category).WithMany(x => x.Editions).HasForeignKey(x => x.CategoryId);
             builder
                 .Property(x => x.CategoryId).HasDefaultValue((int)GamesCategories.Others);
         }
