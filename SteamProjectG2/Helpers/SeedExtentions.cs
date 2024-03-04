@@ -1,12 +1,13 @@
 ﻿using data_access.data.Entities;
 using Microsoft.AspNetCore.Identity;
+using System.Reflection;
 
 namespace SteamProjectG2.Helpers
 {
-    public enum Roles
+    public static class Roles
     {
-        User,
-        Admin
+        public const string ADMIN = "admin";
+        public const string USER = "user";
     }
 
     public static class Seeder
@@ -15,7 +16,11 @@ namespace SteamProjectG2.Helpers
         {
             var roleManager = app.GetRequiredService<RoleManager<IdentityRole>>();
 
-            foreach (var role in Enum.GetNames(typeof(Roles)))
+            var roles = typeof(Roles).GetFields(
+                BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy)
+                .Select(x => (string)x.GetValue(null)!);
+
+            foreach (var role in roles)
             {
                 if (!await roleManager.RoleExistsAsync(role))
                 {
@@ -30,7 +35,7 @@ namespace SteamProjectG2.Helpers
 
             const string USERNAME = "myadmin@myadmin.com";
             const string PASSWORD = "Admin1@";
-
+            
             var existingUser = await userManager.FindByNameAsync(USERNAME);
 
             if (existingUser == null)
@@ -38,13 +43,14 @@ namespace SteamProjectG2.Helpers
                 var user = new User
                 {
                     UserName = USERNAME,
-                    Email = USERNAME
+                    Email = USERNAME,
+                    //AvatarUrl = "" //add avatar
                 };
 
                 var result = await userManager.CreateAsync(user, PASSWORD);
 
                 if (result.Succeeded)
-                    await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                    await userManager.AddToRoleAsync(user, Roles.ADMIN);
             }
         }
     }
