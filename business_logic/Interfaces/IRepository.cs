@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Ardalis.Specification;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace business_logic.Interfaces
+namespace data_access.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class
     {
@@ -19,6 +20,8 @@ namespace business_logic.Interfaces
         void Delete(object id);
         void Delete(TEntity entityToDelete);
         void Update(TEntity entityToUpdate);
+        Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification);
+        Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification);
         void Save();
     }
 }

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using business_logic.DTOs;
 using business_logic.Interfaces;
+using business_logic.Specifications;
 using data_access.data.Entities;
+using data_access.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +21,11 @@ namespace business_logic.Services
         //private readonly ShopDbContext context;
 
         public EditionsService(IMapper mapper,
-                                IRepository<Edition> productsR,
+                                IRepository<Edition> editionsR,
                                 IRepository<Category> categoriesR)
         {
             this.mapper = mapper;
-            this.editionR = productsR;
+            this.editionR = editionsR;
             this.categoriesR = categoriesR;
         }
 
@@ -52,11 +54,11 @@ namespace business_logic.Services
             editionR.Save();
         }
 
-        public EditionDto? Get(int id)
+        public async Task<EditionDto>? Get(int id)
         {
             if (id < 0) throw new HttpException(Errors.IdMustPositive, HttpStatusCode.BadRequest);
 
-            var item = editionR.GetByID(id);
+            var item = await editionR.GetItemBySpec(new EditionSpecs.ById(id));
             if (item == null) throw new HttpException(Errors.ProductNotFound, HttpStatusCode.NotFound);
 
             var dto = mapper.Map<EditionDto>(item);
@@ -64,19 +66,10 @@ namespace business_logic.Services
             return dto;
         }
 
-        public IEnumerable<EditionDto> Get(IEnumerable<int> ids)
-        {
-            return mapper.Map<List<EditionDto>>(editionR.Get(x => ids.Contains(x.Id), includeProperties: "Category"));
-        }
+        public async Task<IEnumerable<EditionDto>> Get(IEnumerable<int> ids) => mapper.Map<List<EditionDto>>(await editionR.GetListBySpec(new EditionSpecs.ByIds(ids)));
 
-        public IEnumerable<EditionDto> GetAll()
-        {
-            return mapper.Map<List<EditionDto>>(editionR.GetAll());
-        }
+        public async Task<IEnumerable<EditionDto>> GetAll() => mapper.Map<List<EditionDto>>(await editionR.GetListBySpec(new EditionSpecs.All()));
 
-        public IEnumerable<CategoryDto> GetAllCategories()
-        {
-            return mapper.Map<List<CategoryDto>>(categoriesR.GetAll());
-        }
+        public IEnumerable<CategoryDto> GetAllCategories() => mapper.Map<List<CategoryDto>>(categoriesR.GetAll());
     }
 }

@@ -9,21 +9,12 @@ namespace SteamProjectG2.Controllers
     public class EditionController : ControllerBase
     {
         private readonly IEditionsService editionsService;
-        public EditionController(IEditionsService editionsService)
-        {
-            this.editionsService = editionsService;
-        }
+        public EditionController(IEditionsService editionsService) => this.editionsService = editionsService;
 
         [HttpGet("all")]
-        public IActionResult Get()
-        {
-            return Ok(editionsService.GetAll());
-        }
+        public async Task<IActionResult> Get() => Ok(await editionsService.GetAll());
         [HttpGet("{id:int}")]
-        public IActionResult Get([FromRoute] int id)
-        {
-            return Ok(editionsService.Get(id));
-        }
+        public async Task<IActionResult> Get([FromRoute] int id) => Ok(await editionsService.Get(id));
 
         [HttpPost]
         public IActionResult Create([FromForm] CreateEditionModel model)

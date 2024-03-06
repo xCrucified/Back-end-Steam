@@ -20,9 +20,8 @@ namespace business_logic.Validators
                 .NotEmpty();
 
             RuleFor(x => x.PhoneNumber)
-                .NotNull()
-                .MinimumLength(12)
-                .Must(x => x.Contains("+"));
+                .Null()
+                .MinimumLength(12);
         }
     }
 }

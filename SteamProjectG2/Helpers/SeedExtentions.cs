@@ -35,7 +35,9 @@ namespace SteamProjectG2.Helpers
 
             const string USERNAME = "myadmin@myadmin.com";
             const string PASSWORD = "Admin1@";
-            
+            const string AVATAR = "https://cdn3.f-cdn.com/contestentries/1211056/27637491/5a39bea42397c_thumb900.jpg";
+            const string SUMMARY = "Doesn't exist";
+
             var existingUser = await userManager.FindByNameAsync(USERNAME);
 
             if (existingUser == null)
@@ -44,7 +46,9 @@ namespace SteamProjectG2.Helpers
                 {
                     UserName = USERNAME,
                     Email = USERNAME,
-                    //AvatarUrl = "" //add avatar
+                    AvatarUrl = AVATAR,
+                    Summary = SUMMARY,
+                    CountryId = 1
                 };
 
                 var result = await userManager.CreateAsync(user, PASSWORD);

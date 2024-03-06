@@ -15,6 +15,6 @@ namespace business_logic.DTOs
         public int? Discount { get; set; }
         public IFormFile? Image { get; set; }
 
-        public int CategoryId { get; set; }
+        public int? CategoryId { get; set; }
     }
 }

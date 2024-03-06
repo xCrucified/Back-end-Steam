@@ -10,10 +10,7 @@ namespace SteamProjectG2.Controllers
     {
         private readonly IAccountsService accountsService;
 
-        public AccountController(IAccountsService accountsService)
-        {
-            this.accountsService = accountsService;
-        }
+        public AccountController(IAccountsService accountsService) => this.accountsService = accountsService;
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)

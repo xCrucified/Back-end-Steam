@@ -4,6 +4,8 @@ using SteamProjectG2;
 using data_access;
 using Microsoft.Extensions.DependencyInjection;
 using SteamProjectG2.Helpers;
+using Microsoft.AspNetCore.Identity;
+using data_access.data.Entities;
 public class Program
 {
     private static void Main(string[] args)

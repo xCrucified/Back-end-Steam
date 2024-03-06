@@ -1,4 +1,6 @@
-﻿using business_logic.Interfaces;
+﻿using Ardalis.Specification;
+using Ardalis.Specification.EntityFrameworkCore;
+using business_logic.Interfaces;
 using data_access.data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -83,6 +85,21 @@ namespace data_access.Repositories
         public void Save()
         {
             context.SaveChanges();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetListBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
+        }
+
+        public async Task<TEntity?> GetItemBySpec(ISpecification<TEntity> specification)
+        {
+            return await ApplySpecification(specification).FirstOrDefaultAsync();
+        }
+        private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> specification)
+        {
+            var evaluator = new SpecificationEvaluator();
+            return evaluator.GetQuery(dbSet, specification);
         }
     }
 }
