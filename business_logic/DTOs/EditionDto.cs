@@ -14,7 +14,7 @@ namespace business_logic.DTOs
         public decimal? Price { get; set; }
         public string? ImgUrl { get; set; }
         public int? Discount { get; set; }
-
+        public int TimeProgress { get; set; }
         public int? CategoryId { get; set; }
     }
 }

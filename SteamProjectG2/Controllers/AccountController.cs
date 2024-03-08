@@ -9,7 +9,6 @@ namespace SteamProjectG2.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IAccountsService accountsService;
-
         public AccountController(IAccountsService accountsService) => this.accountsService = accountsService;
 
         [HttpPost("register")]
@@ -18,7 +17,6 @@ namespace SteamProjectG2.Controllers
             await accountsService.Register(model);
             return Ok();
         }
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
