@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using business_logic.DTOs;
+using business_logic.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SteamProjectG2.Controllers
 {
@@ -6,18 +8,21 @@ namespace SteamProjectG2.Controllers
     [ApiController]
     public class ReviewController : Controller
     {
-        //private readonly IReviewService editionsService;
-        public ReviewController(IEditionsService editionsService) => this.editionsService = editionsService;
+        private readonly IReviewService reviewService;
+        public ReviewController(IReviewService reviewService)
+        {
+            this.reviewService = reviewService;
+        } 
 
         [HttpGet("all")]
-        public async Task<IActionResult> Get() => Ok(await editionsService.GetAll());
+        public async Task<IActionResult> Get() => Ok(await reviewService.GetAll());
         [HttpGet("{id:int}")]
-        public async Task<IActionResult> Get([FromRoute] int id) => Ok(await editionsService.Get(id));
+        public async Task<IActionResult> Get([FromRoute] int id) => Ok(await reviewService.Get(id));
 
         [HttpPost]
         public IActionResult Create([FromForm] CreateEditionModel model)
         {
-            editionsService.Create(model);
+            reviewService.Create(model);
             return Ok();
         }
 
@@ -25,14 +30,14 @@ namespace SteamProjectG2.Controllers
         [HttpPut]
         public IActionResult Edit([FromBody] EditionDto model)
         {
-            editionsService.Edit(model);
+            reviewService.Edit(model);
             return Ok();
         }
 
         [HttpDelete("{id:int}")]
         public IActionResult Delete([FromRoute] int id)
         {
-            editionsService.Delete(id);
+            reviewService.Delete(id);
             return Ok();
         }
     }

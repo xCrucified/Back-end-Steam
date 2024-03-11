@@ -58,11 +58,11 @@ namespace data_access.data
             });
             builder.Entity<Review>().HasData(new[]
             {
-                new Review { Id = 1, Rate = 4, Comment="Good Game!!", EditionId = 1, UserId = 1},
-                new Review { Id = 2, Rate = 1, Comment="Bad Game!!", EditionId = 2, UserId = 2},
-                new Review { Id = 3, Rate = 2, Comment="Ok Game!!", EditionId = 3, UserId = 3},
-                new Review { Id = 4, Rate = 5, Comment="Pretty Good Game!!", EditionId = 4, UserId = 4},
-                new Review { Id = 5, Rate = 3, Comment="Normal Game!!", EditionId = 5, UserId = 5},
+                new Review { Id = 1, Rate = false, Comment="Good Game!!", EditionId = 1, UserId = 1},
+                new Review { Id = 2, Rate = true, Comment="Bad Game!!", EditionId = 2, UserId = 2},
+                new Review { Id = 3, Rate = true, Comment="Ok Game!!", EditionId = 3, UserId = 3},
+                new Review { Id = 4, Rate = true, Comment="Pretty Good Game!!", EditionId = 4, UserId = 4},
+                new Review { Id = 5, Rate = false, Comment="Normal Game!!", EditionId = 5, UserId = 5},
             });
         }
     }
