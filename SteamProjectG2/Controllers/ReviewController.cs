@@ -20,7 +20,7 @@ namespace SteamProjectG2.Controllers
         public async Task<IActionResult> Get([FromRoute] int id) => Ok(await reviewService.Get(id));
 
         [HttpPost]
-        public IActionResult Create([FromForm] CreateEditionModel model)
+        public IActionResult Create([FromForm] CreateReviewModel model)
         {
             reviewService.Create(model);
             return Ok();
@@ -28,7 +28,7 @@ namespace SteamProjectG2.Controllers
 
 
         [HttpPut]
-        public IActionResult Edit([FromBody] EditionDto model)
+        public IActionResult Edit([FromBody] ReviewDto model)
         {
             reviewService.Edit(model);
             return Ok();

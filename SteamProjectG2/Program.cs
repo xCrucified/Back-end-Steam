@@ -26,7 +26,7 @@ public class Program
 
         builder.Services.AddDbContext(connStr);
         builder.Services.AddIdentity();
-        builder.Services.AddRepositories();
+        builder.Services.AddRepositories(); 
 
         builder.Services.AutoMapper();
         builder.Services.AddFluentValidators();

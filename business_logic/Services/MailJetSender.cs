@@ -24,10 +24,10 @@ namespace business_logic.Services
             {
                 Resource = Send.Resource,
             }
-               .Property(Send.FromEmail, "wladnaz@ukr.net")
-               .Property(Send.FromName, "Vlad")
+               .Property(Send.FromEmail, "eexet17@gmail.com")
+               .Property(Send.FromName, "Georgy")
                .Property(Send.Subject, subject)
-            //.Property(Send.TextPart, )
+               .Property(Send.TextPart, "You sup my boi")
                .Property(Send.HtmlPart, htmlMessage)
                .Property(Send.Recipients, new JArray {
                     new JObject {

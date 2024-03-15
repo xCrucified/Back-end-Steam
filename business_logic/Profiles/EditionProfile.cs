@@ -16,12 +16,12 @@ namespace business_logic.Profiles
         {
             CreateMap<EditionDto, Edition>()
                 .ForMember(x => x.Category, opt => opt.Ignore());
+
             CreateMap<Edition, EditionDto>();
 
             CreateMap<Category, CategoryDto>().ReverseMap();
 
             CreateMap<CreateEditionModel, Edition>();
-                //.ForMember(x => x.ImgUrl, opt => opt.MapFrom(src => fileService.SaveProductImage(src.Image).Result));
 
             CreateMap<RegisterModel, User>()
                 .ForMember(x => x.UserName, opts => opts.MapFrom(s => s.Email));

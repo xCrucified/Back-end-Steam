@@ -26,8 +26,8 @@ namespace data_access
             {
                 options.SignIn.RequireConfirmedAccount = false;
             })
-               .AddDefaultTokenProviders()
-               .AddEntityFrameworkStores<SteamDbContext>();
+            .AddDefaultTokenProviders()
+            .AddEntityFrameworkStores<SteamDbContext>();
         }
     }
 }

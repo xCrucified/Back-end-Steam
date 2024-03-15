@@ -22,16 +22,13 @@ namespace business_logic
         {
             services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
+                cfg.AddProfile(new ReviewProfile());
                 cfg.AddProfile(new EditionProfile(provider.CreateScope().ServiceProvider.GetService<IFileService>()!));
             }).CreateMapper());
         }
 
         public static void AddFluentValidators(this IServiceCollection services)
         {
-            //services.AddFluentValidationAutoValidation();
-            //// enable client-side validation
-            //services.AddFluentValidationClientsideAdapters();
-            // Load an assembly reference rather than using a marker type.
             services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
         }
         public static void AddCustomServices(this IServiceCollection services)
@@ -40,6 +37,7 @@ namespace business_logic
             services.AddScoped<IAccountsService, AccountsService>();
             services.AddScoped<IFileService, LocalFileService>();
             services.AddScoped<IEmailSender, MailJetSender>();
+            services.AddScoped<IReviewService, ReviewsService>();
         }
     }
 }
