@@ -6,7 +6,7 @@ namespace SteamProjectG2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ReviewController : Controller
+    public class ReviewController : ControllerBase
     {
         private readonly IReviewService reviewService;
         public ReviewController(IReviewService reviewService)

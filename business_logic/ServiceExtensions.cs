@@ -23,6 +23,7 @@ namespace business_logic
             services.AddSingleton(provider => new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile(new ReviewProfile());
+                cfg.AddProfile(new CategoryProfile());
                 cfg.AddProfile(new EditionProfile(provider.CreateScope().ServiceProvider.GetService<IFileService>()!));
             }).CreateMapper());
         }
@@ -38,6 +39,7 @@ namespace business_logic
             services.AddScoped<IFileService, LocalFileService>();
             services.AddScoped<IEmailSender, MailJetSender>();
             services.AddScoped<IReviewService, ReviewsService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         }
     }
 }
